@@ -1,0 +1,31 @@
+CREATE TABLE BOARD_COLUMS(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    `order` int NOT NULL,
+    kind VARCHAR(7) NOT NULL,
+    board_id BIGINT NOT NULL,
+    CONSTRAINT boards__boards_columns_fk FOREIGN KEY (board_id) REFERENCES BOARD(id) ON DELETE CASCADE,
+    CONSTRAINT id_order_uk UNIQUE KEY unique_board_id_order (board_id, `order`)
+
+
+) ENGINE=InnoDB;
+
+CREATE TABLE CARDS(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    board_column_id BIGINT NOT NULL,
+    CONSTRAINT boards_columns__cards_fk FOREIGN KEY (board_column_id) REFERENCES BOARD_COLUMS(id) ON DELETE CASCADE
+
+)ENGINE=InnoDB;
+
+CREATE TABLE BLOCKS(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    block_reason VARCHAR(255) NOT NULL,
+    blocked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    unblocked_at TIMESTAMP NULL,
+    unblock_reason VARCHAR(255) NOT NULL,
+    card_id BIGINT NOT NULL,
+    CONSTRAINT cards__blocks_fk FOREIGN KEY (card_id) REFERENCES CARDS(id) ON DELETE CASCADE
+
+)ENGINE=InnoDB;

@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: trivago
+      changes:
+        - sqlFile:
+            path: db/changelog/migrations/db.changelog-202503180422.sql
+  - changeSet:
+        id: 2
+        author: trivago
+        changes:
+          - sqlFile:
+              path: db/changelog/migrations/db.changelog-202503190425.sql
+  - changeSet:
+        id: 3
+        author: trivago
+        changes:
+          - sqlFile:
+              path: db/changelog/migrations/db.changelog-202503271836.sql
